@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   font-family: "Quicksand", sans-serif;
-  background-color: #181b44;
+  background-color: #a5bf8f;
   height: 100vh;
   width: 100vw;
   display: flex;
