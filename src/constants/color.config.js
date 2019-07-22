@@ -6,22 +6,22 @@ export const JKStyle = {
     deep: "#2A3988"
   },
   blue: {
-    light: "#9ca7e0",
-    main: "#4e5ead",
-    dark: "#485ab1",
-    deep: "#2A3988"
+    light: "#6BBDE1",
+    main: "#3592CF",
+    dark: "#28709F",
+    deep: "#164B6E"
   },
   orange: {
-    light: "#9ca7e0",
-    main: "#4e5ead",
-    dark: "#485ab1",
-    deep: "#2A3988"
+    light: "#FFD18E",
+    main: "#F5BA63",
+    dark: "#DC9C3D",
+    deep: "#e19627"
   },
   red: {
-    light: "#9ca7e0",
-    main: "#4e5ead",
-    dark: "#485ab1",
-    deep: "#2A3988"
+    light: "#FFA5A5",
+    main: "#F56363",
+    dark: "#E45050",
+    deep: "#BB3434"
   },
   skin: {
     light: "#ffdbbc",
@@ -40,10 +40,10 @@ export const JKStyle = {
     deep: "#366879"
   },
   brown: {
-    light: "#9ca7e0",
-    main: "#4e5ead",
-    dark: "#485ab1",
-    deep: "#2A3988"
+    light: "#57382C",
+    main: "#4B3730",
+    dark: "#393030",
+    deep: "#141414"
   },
   eyeNavy: {
     light: "#36b3b9",

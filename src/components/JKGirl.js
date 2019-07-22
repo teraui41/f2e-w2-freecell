@@ -64,7 +64,7 @@ const PersonHair = styled.span`
   position: absolute;
   width: 80px;
   height: 25px;
-  background-color: ${({hireColor}) => JKStyle[hireColor].main};
+  background-color: ${({hairColor}) => JKStyle[hairColor].main};
   padding: 5px;
   margin-top: -4px;
   margin-left: -4px;
@@ -75,7 +75,7 @@ const PersonHair = styled.span`
 
 const HairFrond = styled.span`
   position: absolute;
-  background-image: ${({hireColor}) => (`linear-gradient(to left top, ${JKStyle[hireColor].main}, ${JKStyle[hireColor].dark})`)};
+  background-image: ${({hairColor}) => (`linear-gradient(to left top, ${JKStyle[hairColor].main}, ${JKStyle[hairColor].dark})`)};
   width: 40px;
   height: 35px;
   border-top-left-radius: 100px;
@@ -83,15 +83,15 @@ const HairFrond = styled.span`
   transform: rotate(${props => props.rotate}deg);
   margin-left: ${props => props.left}px;
   margin-top: 5px;
-  border-left: 3px solid ${({hireColor}) => JKStyle[hireColor].deep};
+  border-left: 3px solid ${({hairColor}) => JKStyle[hairColor].deep};
 `;
 
 const HairBack = styled.span`
   position: absolute;
-  background-image: ${({hireColor}) => (`linear-gradient(to left top, ${JKStyle[hireColor].main}, ${JKStyle[hireColor].dark})`)};
+  background-image: ${({hairColor}) => (`linear-gradient(to left top, ${JKStyle[hairColor].main}, ${JKStyle[hairColor].dark})`)};
   width: 16px;
   height: 48px;
-  border-left: 8px solid ${({hireColor}) => JKStyle[hireColor].main};
+  border-left: 8px solid ${({hairColor}) => JKStyle[hairColor].main};
   border-bottom-left-radius: 100px;
   margin-top: 30px;
   margin-left: -5px;
@@ -113,7 +113,7 @@ const HairTailMove = keyframes`
 
 const HairTail = styled.span`
   position: absolute;
-  background-image: ${({hireColor}) => (`linear-gradient(to left top, ${JKStyle[hireColor].main}, ${JKStyle[hireColor].deep})`)};
+  background-image: ${({hairColor}) => (`linear-gradient(to left top, ${JKStyle[hairColor].main}, ${JKStyle[hairColor].deep})`)};
   width: 26px;
   height: 97px;
   border-top-left-radius: 42px;
@@ -125,14 +125,14 @@ const HairTail = styled.span`
   -ms-transform: rotate(13deg);
   transform: rotate(16deg);
   margin-top: -13px;
-  border-bottom: 5px solid ${({hireColor}) => JKStyle[hireColor].deep};
+  border-bottom: 5px solid ${({hairColor}) => JKStyle[hairColor].deep};
   animation: ${HairTailMove} 1s ease infinite;
   transform-origin: top;
 `;
 
 const HairTailEnd = styled.span`
   position: absolute;
-  background-image: ${({hireColor}) => (`linear-gradient(to left top, ${JKStyle[hireColor].deep}, ${JKStyle[hireColor].main})`)};
+  background-image: ${({hairColor}) => (`linear-gradient(to left top, ${JKStyle[hairColor].deep}, ${JKStyle[hairColor].main})`)};
   width: 19px;
   height: 73px;
   border-top-left-radius: 100px;
@@ -166,7 +166,7 @@ const HairUp = styled.span`
   position: absolute;
   width: 22px;
   height: 27px;
-  border: 0px solid ${({hireColor}) => JKStyle[hireColor].main};
+  border: 0px solid ${({hairColor}) => JKStyle[hairColor].main};
   border-radius: 100%;
   border-right-width: 9px;
   margin-top: -28px;
@@ -177,10 +177,10 @@ const HairUp = styled.span`
 
 const HairEnd = styled.span`
   position: absolute;
-  background-image: ${({hireColor}) => (`linear-gradient(to left top, ${JKStyle[hireColor].dark}, ${JKStyle[hireColor].main})`)};
+  background-image: ${({hairColor}) => (`linear-gradient(to left top, ${JKStyle[hairColor].dark}, ${JKStyle[hairColor].main})`)};
   width: 35px;
   height: 36px;
-  border-left: 8px solid ${({hireColor}) => JKStyle[hireColor].main};
+  border-left: 8px solid ${({hairColor}) => JKStyle[hairColor].main};
   border-top-left-radius: 100px;
   margin-left: -5px;
   margin-top: -4px;
@@ -422,11 +422,11 @@ class JKGirl extends React.PureComponent {
   }
 
   render() {
-    const { directionX, directionY, isMoving, isJump, faceRight } = this.props;
+    const { directionX, directionY, isMoving, isJump, faceRight, cloth, eye, hair } = this.props;
 
-    const hireColor = 'purple';
-    const clothColor = 'navy';
-    const eyeColor = 'eyeNavy'
+    const hairColor = hair;
+    const clothColor = cloth;
+    const eyeColor = eye
 
     return (
       <PersonBox
@@ -451,15 +451,15 @@ class JKGirl extends React.PureComponent {
           <Hand left isMoving={isMoving} />
         </PersonBody>
         <PersonHead>
-          <PersonHair hireColor={hireColor}>
-            <HairTail hireColor={hireColor}/>
-            <HairTailEnd hireColor={hireColor}/>
-            <HairEnd hireColor={hireColor}/>
-            <HairBack hireColor={hireColor}/>
-            <HairFrond hireColor={hireColor} left={51} rotate={-73} />
-            <HairFrond hireColor={hireColor} left={31} rotate={-53} />
-            <HairFrond hireColor={hireColor} left={11} rotate={-23} />
-            <HairUp hireColor={hireColor}/>
+          <PersonHair hairColor={hairColor}>
+            <HairTail hairColor={hairColor}/>
+            <HairTailEnd hairColor={hairColor}/>
+            <HairEnd hairColor={hairColor}/>
+            <HairBack hairColor={hairColor}/>
+            <HairFrond hairColor={hairColor} left={51} rotate={-73} />
+            <HairFrond hairColor={hairColor} left={31} rotate={-53} />
+            <HairFrond hairColor={hairColor} left={11} rotate={-23} />
+            <HairUp hairColor={hairColor}/>
           </PersonHair>
           <PersonFace>
             <PersonEye eyeColor={eyeColor} left />
