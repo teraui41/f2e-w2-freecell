@@ -8,6 +8,14 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  ::before {
+    position: absolute;
+    content: "";
+    top: 0px;
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(to left top, #d3f0fd, #a9d1e4);
+  }
 `;
 
 export default Container;

@@ -403,6 +403,13 @@ const TakeItem = styled.span`
   width: 10px;
 `;
 
+const NumberCap = styled.span`
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  border-radius: 40px;
+`
+
 const defaultState = {
   name: "",
   gender: 0,
@@ -426,7 +433,7 @@ class JKGirl extends React.PureComponent {
 
     const hairColor = hair;
     const clothColor = cloth;
-    const eyeColor = eye
+    const eyeColor = eye;
 
     return (
       <PersonBox
@@ -467,6 +474,7 @@ class JKGirl extends React.PureComponent {
             <PersonMouth />
           </PersonFace>
         </PersonHead>
+        <NumberCap />
         <Message />
       </PersonBox>
     );

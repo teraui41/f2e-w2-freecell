@@ -4,18 +4,23 @@ import JKGirl from '../components/JKGirl';
 import { FOUR_SUITS } from '../constants/common';
 
 const BasicPlayground = styled.div`
+  position: relative;
   width: 1280px;
   height: 100%;
   margin: auto;
   background-color: #C4CF9D;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.18);
+  ::before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(to left top, #d3f0fd, #a9d1e4);
+  }
 `
 
 class PlaygroundScreen extends React.PureComponent {
 
   render() {
-    console.log("TCL: PlaygroundScreen -> render -> FOUR_SUITS['spade ']", FOUR_SUITS['spade'])
-    console.log("TCL: PlaygroundScreen -> render -> FOUR_SUITS", FOUR_SUITS)
     return (
       <BasicPlayground>
         <JKGirl directionX={500} directionY={100} {...FOUR_SUITS['spade']}/>

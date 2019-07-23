@@ -14,7 +14,7 @@ export const JKStyle = {
   orange: {
     light: "#FFD18E",
     main: "#F5BA63",
-    dark: "#DC9C3D",
+    dark: "#eaad53",
     deep: "#e19627"
   },
   red: {
