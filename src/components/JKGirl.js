@@ -1,22 +1,23 @@
 import React from "react";
 import styled from "styled-components";
 import { keyframes } from "styled-components";
-import { JKStyle } from '../constants/color.config';
+import { JKStyle } from "../constants/color.config";
 
 const Jump = keyframes`
   0% {
-    transform: translate(0px, 0px);
+    transform: translate(0px, 0px) scale(0.8);
     box-shadow: 33px 159px 0px 5px #0000004a;
   }
 
   100% {
-    transform: translate(0px,-100px);
+    transform: translate(0px,-100px) scale(0.8);
     box-shadow: 33px 259px 10px 5px #0000004a;
   }
 `;
 
 const PersonBox = styled.div`
   position: absolute;
+  z-index: ${({zIndex}) => zIndex};
   top: ${props => props.directionY}px;
   left: ${props => props.directionX}px;
   width: 34px;
@@ -64,7 +65,7 @@ const PersonHair = styled.span`
   position: absolute;
   width: 80px;
   height: 25px;
-  background-color: ${({hairColor}) => JKStyle[hairColor].main};
+  background-color: ${({ hairColor }) => JKStyle[hairColor].main};
   padding: 5px;
   margin-top: -4px;
   margin-left: -4px;
@@ -75,7 +76,10 @@ const PersonHair = styled.span`
 
 const HairFrond = styled.span`
   position: absolute;
-  background-image: ${({hairColor}) => (`linear-gradient(to left top, ${JKStyle[hairColor].main}, ${JKStyle[hairColor].dark})`)};
+  background-image: ${({ hairColor }) =>
+    `linear-gradient(to left top, ${JKStyle[hairColor].main}, ${
+      JKStyle[hairColor].dark
+    })`};
   width: 40px;
   height: 35px;
   border-top-left-radius: 100px;
@@ -83,15 +87,18 @@ const HairFrond = styled.span`
   transform: rotate(${props => props.rotate}deg);
   margin-left: ${props => props.left}px;
   margin-top: 5px;
-  border-left: 3px solid ${({hairColor}) => JKStyle[hairColor].deep};
+  border-left: 3px solid ${({ hairColor }) => JKStyle[hairColor].deep};
 `;
 
 const HairBack = styled.span`
   position: absolute;
-  background-image: ${({hairColor}) => (`linear-gradient(to left top, ${JKStyle[hairColor].main}, ${JKStyle[hairColor].dark})`)};
+  background-image: ${({ hairColor }) =>
+    `linear-gradient(to left top, ${JKStyle[hairColor].main}, ${
+      JKStyle[hairColor].dark
+    })`};
   width: 16px;
   height: 48px;
-  border-left: 8px solid ${({hairColor}) => JKStyle[hairColor].main};
+  border-left: 8px solid ${({ hairColor }) => JKStyle[hairColor].main};
   border-bottom-left-radius: 100px;
   margin-top: 30px;
   margin-left: -5px;
@@ -113,7 +120,10 @@ const HairTailMove = keyframes`
 
 const HairTail = styled.span`
   position: absolute;
-  background-image: ${({hairColor}) => (`linear-gradient(to left top, ${JKStyle[hairColor].main}, ${JKStyle[hairColor].deep})`)};
+  background-image: ${({ hairColor }) =>
+    `linear-gradient(to left top, ${JKStyle[hairColor].main}, ${
+      JKStyle[hairColor].deep
+    })`};
   width: 26px;
   height: 97px;
   border-top-left-radius: 42px;
@@ -125,14 +135,17 @@ const HairTail = styled.span`
   -ms-transform: rotate(13deg);
   transform: rotate(16deg);
   margin-top: -13px;
-  border-bottom: 5px solid ${({hairColor}) => JKStyle[hairColor].deep};
+  border-bottom: 5px solid ${({ hairColor }) => JKStyle[hairColor].deep};
   animation: ${HairTailMove} 1s ease infinite;
   transform-origin: top;
 `;
 
 const HairTailEnd = styled.span`
   position: absolute;
-  background-image: ${({hairColor}) => (`linear-gradient(to left top, ${JKStyle[hairColor].deep}, ${JKStyle[hairColor].main})`)};
+  background-image: ${({ hairColor }) =>
+    `linear-gradient(to left top, ${JKStyle[hairColor].deep}, ${
+      JKStyle[hairColor].main
+    })`};
   width: 19px;
   height: 73px;
   border-top-left-radius: 100px;
@@ -166,7 +179,7 @@ const HairUp = styled.span`
   position: absolute;
   width: 22px;
   height: 27px;
-  border: 0px solid ${({hairColor}) => JKStyle[hairColor].main};
+  border: 0px solid ${({ hairColor }) => JKStyle[hairColor].main};
   border-radius: 100%;
   border-right-width: 9px;
   margin-top: -28px;
@@ -177,10 +190,13 @@ const HairUp = styled.span`
 
 const HairEnd = styled.span`
   position: absolute;
-  background-image: ${({hairColor}) => (`linear-gradient(to left top, ${JKStyle[hairColor].dark}, ${JKStyle[hairColor].main})`)};
+  background-image: ${({ hairColor }) =>
+    `linear-gradient(to left top, ${JKStyle[hairColor].dark}, ${
+      JKStyle[hairColor].main
+    })`};
   width: 35px;
   height: 36px;
-  border-left: 8px solid ${({hairColor}) => JKStyle[hairColor].main};
+  border-left: 8px solid ${({ hairColor }) => JKStyle[hairColor].main};
   border-top-left-radius: 100px;
   margin-left: -5px;
   margin-top: -4px;
@@ -207,22 +223,22 @@ const PersonEye = styled.span`
     content: "";
     width: ${props => (props.left ? 18 : 16)}px;
     height: 11px;
-    background-color: ${({eyeColor}) => JKStyle[eyeColor].dark};
+    background-color: ${({ eyeColor }) => JKStyle[eyeColor].dark};
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
     margin-left: 5px;
-    border-top: 5px solid ${({eyeColor}) => JKStyle[eyeColor].deep};
+    border-top: 5px solid ${({ eyeColor }) => JKStyle[eyeColor].deep};
   }
   ::after {
     position: absolute;
     content: "";
     width: ${props => (props.left ? 10 : 8)}px;
     height: 7px;
-    background-color: ${({eyeColor}) => JKStyle[eyeColor].light};
+    background-color: ${({ eyeColor }) => JKStyle[eyeColor].light};
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
     margin-left: 9px;
-    border-top: 5px solid ${({eyeColor}) => JKStyle[eyeColor].main};
+    border-top: 5px solid ${({ eyeColor }) => JKStyle[eyeColor].main};
   }
 `;
 
@@ -273,9 +289,12 @@ const Skirt = styled.span`
   width: 50px;
   margin-top: 34px;
   height: 12px;
-  background-image: ${({clothColor}) => (`linear-gradient(to left, ${JKStyle[clothColor].main} 70%, ${JKStyle[clothColor].dark} 71%)`)};
+  background-image: ${({ clothColor }) =>
+    `linear-gradient(to left, ${JKStyle[clothColor].main} 70%, ${
+      JKStyle[clothColor].dark
+    } 71%)`};
   background-size: 9px;
-  border-top: 5px solid ${({clothColor}) => JKStyle[clothColor].deep};
+  border-top: 5px solid ${({ clothColor }) => JKStyle[clothColor].deep};
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
 `;
@@ -289,9 +308,10 @@ const Neck = styled.span`
   border-bottom-left-radius: 10px;
   left: 5px;
   border-top: 5px solid ${JKStyle.skin.deep};
-  border-left: 12px solid ${({clothColor}) => JKStyle[clothColor].light};
-  border-right: 9px solid ${({clothColor}) => JKStyle[clothColor].light};
-  box-shadow: 0px 0px 0px 2px ${JKStyle.grayScale.light}, 0px 0px 0px 5px ${({clothColor}) => JKStyle[clothColor].main};
+  border-left: 12px solid ${({ clothColor }) => JKStyle[clothColor].light};
+  border-right: 9px solid ${({ clothColor }) => JKStyle[clothColor].light};
+  box-shadow: 0px 0px 0px 2px ${JKStyle.grayScale.light},
+    0px 0px 0px 5px ${({ clothColor }) => JKStyle[clothColor].main};
   ::after {
     position: absolute;
     content: "";
@@ -405,10 +425,18 @@ const TakeItem = styled.span`
 
 const NumberCap = styled.span`
   position: absolute;
-  height: 50px;
-  width: 50px;
-  border-radius: 40px;
-`
+  z-index: 9;
+  height: 35px;
+  width: 25px;
+  border-radius: 53px;
+  background-color: #fff;
+  border: 2px solid #eee;
+  transform: rotate(28deg);
+  font-size: 23px;
+  text-align: center;
+  font-weight: bold;
+  color: ${({ numberColor }) => JKStyle[numberColor].main};
+`;
 
 const defaultState = {
   name: "",
@@ -429,11 +457,22 @@ class JKGirl extends React.PureComponent {
   }
 
   render() {
-    const { directionX, directionY, isMoving, isJump, faceRight, cloth, eye, hair } = this.props;
+    const {
+      directionX,
+      directionY,
+      isMoving,
+      isJump,
+      faceRight = true,
+      cloth,
+      eye,
+      hair,
+      number,
+      numberColor
+    } = this.props;
 
+    const eyeColor = eye;
     const hairColor = hair;
     const clothColor = cloth;
-    const eyeColor = eye;
 
     return (
       <PersonBox
@@ -441,40 +480,40 @@ class JKGirl extends React.PureComponent {
         directionY={directionY}
         faceRight={faceRight}
         isJump={isJump}
+        zIndex={directionY}
       >
         <PersonFoot>
           <Leg isMoving={isMoving} />
           <Leg left isMoving={isMoving} />
-          <Skirt clothColor={clothColor}/>
+          <Skirt clothColor={clothColor} />
         </PersonFoot>
         <PersonBody>
           <Hand isMoving={isMoving}>
-            <TakeItem>
-            </TakeItem>
+            <TakeItem />
           </Hand>
           <Chest>
-            <Neck clothColor={clothColor}/>
+            <Neck clothColor={clothColor} />
           </Chest>
           <Hand left isMoving={isMoving} />
         </PersonBody>
         <PersonHead>
           <PersonHair hairColor={hairColor}>
-            <HairTail hairColor={hairColor}/>
-            <HairTailEnd hairColor={hairColor}/>
-            <HairEnd hairColor={hairColor}/>
-            <HairBack hairColor={hairColor}/>
+            <HairTail hairColor={hairColor} />
+            <HairTailEnd hairColor={hairColor} />
+            <HairEnd hairColor={hairColor} />
+            <HairBack hairColor={hairColor} />
             <HairFrond hairColor={hairColor} left={51} rotate={-73} />
             <HairFrond hairColor={hairColor} left={31} rotate={-53} />
             <HairFrond hairColor={hairColor} left={11} rotate={-23} />
-            <HairUp hairColor={hairColor}/>
+            <HairUp hairColor={hairColor} />
           </PersonHair>
           <PersonFace>
             <PersonEye eyeColor={eyeColor} left />
             <PersonEye eyeColor={eyeColor} right />
             <PersonMouth />
           </PersonFace>
+          <NumberCap numberColor={numberColor}>{number}</NumberCap>
         </PersonHead>
-        <NumberCap />
         <Message />
       </PersonBox>
     );

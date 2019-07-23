@@ -1,7 +1,9 @@
 import { connect } from "react-redux";
 import Playground from "../screens/PlaygroundScreen";
 
-const mapStateToProps = () => ({});
+const mapStateToProps = ({ JKs }) => ({
+  students: JKs.get('students').toJS()
+});
 
 const mapDispatchToProps = dispatch => ({});
 

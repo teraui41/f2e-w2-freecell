@@ -21,12 +21,14 @@ const BasicPlayground = styled.div`
 class PlaygroundScreen extends React.PureComponent {
 
   render() {
+    const { students } = this.props;
+
     return (
       <BasicPlayground>
-        <JKGirl directionX={500} directionY={100} {...FOUR_SUITS['spade']}/>
-        <JKGirl directionX={400} directionY={100} {...FOUR_SUITS['heart']}/>
-        <JKGirl directionX={300} directionY={100} {...FOUR_SUITS['diamond']}/>
-        <JKGirl directionX={200} directionY={100} {...FOUR_SUITS['club']}/>
+        {
+          students.map(({ suit, ...student}, index) =>
+            <JKGirl key={index} {...student} {...FOUR_SUITS[suit]}/>)
+        }
       </BasicPlayground>
     )
   }
