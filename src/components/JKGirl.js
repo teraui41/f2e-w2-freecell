@@ -6,31 +6,52 @@ import { JKStyle } from "../constants/color.config";
 const Jump = keyframes`
   0% {
     transform: translate(0px, 0px) scale(0.8);
-    box-shadow: 33px 159px 0px 5px #0000004a;
   }
 
   100% {
     transform: translate(0px,-100px) scale(0.8);
-    box-shadow: 33px 259px 10px 5px #0000004a;
   }
+`;
+
+const JumpShadow = keyframes`
+0% {
+  box-shadow: 33px 159px 0px 5px #0000004a;
+}
+
+100% {
+  box-shadow: 33px 259px 10px 5px #0000004a;
+}
+`;
+
+const Shadow = styled.div`
+  width: 34px;
+  height: 0px;
+  box-shadow: ${({ picked }) =>
+    picked ? "33px 179px 10px 5px #0000004a" : "33px 159px 0px 5px #0000004a"};
+  transition: all 0.3s ease;
+  animation-name: ${props => (props.isJump ? JumpShadow : "")};
+  animation-duration: 0.5s;
+  animation-timing-function: cubic-bezier(0.4, 0.29, 0.19, 0.99);
+  animation-iteration-count: 2;
 `;
 
 const PersonBox = styled.div`
   position: absolute;
-  z-index: ${({zIndex}) => zIndex};
+  z-index: ${({ zIndex }) => zIndex};
   top: ${props => props.directionY}px;
   left: ${props => props.directionX}px;
-  width: 34px;
-  height: 0px;
-  box-shadow: 33px 159px 0px 5px #0000004a;
-  transition: all 0.5s linear;
+  width: 97px;
+  height: 157px;
+  transition: all 3s ease;
   animation-name: ${props => (props.isJump ? Jump : "")};
   animation-duration: 0.5s;
   animation-timing-function: cubic-bezier(0.4, 0.29, 0.19, 0.99);
   animation-iteration-count: 2;
-  transform: rotateY(${props => (props.faceRight ? 0 : -180)}deg) scale(0.8);
+  transform: rotateY(${({ faceRight, picked }) =>
+    `${faceRight ? 0 : -180}deg) scale(0.8) translateY(${picked ? -20 : 0}px);`}
   transform-origin: 50px 0px;
   animation-direction: alternate;
+  pointer-events: unset;
 `;
 
 const HeadMove = keyframes`
@@ -58,7 +79,7 @@ const PersonHead = styled.span`
   border: 3px solid ${JKStyle.skin.main};
   top: 4px;
   left: 3px;
-  animation: ${HeadMove} 1s ease infinite;
+  animation: ${HeadMove} 1s ${({ delay }) => delay}s ease infinite;
 `;
 
 const PersonHair = styled.span`
@@ -136,7 +157,7 @@ const HairTail = styled.span`
   transform: rotate(16deg);
   margin-top: -13px;
   border-bottom: 5px solid ${({ hairColor }) => JKStyle[hairColor].deep};
-  animation: ${HairTailMove} 1s ease infinite;
+  animation: ${HairTailMove} 1s ${({ delay }) => delay}s ease infinite;
   transform-origin: top;
 `;
 
@@ -157,7 +178,7 @@ const HairTailEnd = styled.span`
   -ms-transform: rotate(8deg);
   transform: rotate(16deg);
   margin-top: -7px;
-  animation: ${HairTailMove} 1s ease infinite;
+  animation: ${HairTailMove} 1s ${({ delay }) => delay}s ease infinite;
   transform-origin: top;
 `;
 
@@ -184,7 +205,7 @@ const HairUp = styled.span`
   border-right-width: 9px;
   margin-top: -28px;
   margin-left: 32px;
-  animation: ${HairUpMove} 1s ease infinite;
+  animation: ${HairUpMove} 1s ${({ delay }) => delay}s ease infinite;
   transform-origin: bottom;
 `;
 
@@ -272,7 +293,7 @@ const PersonBody = styled.span`
   position: absolute;
   top: 86px;
   margin-left: 24px;
-  animation: ${BodyMove} 1s ease infinite;
+  animation: ${BodyMove} 1s ${({ delay }) => delay}s ease infinite;
 `;
 
 const Chest = styled.span`
@@ -435,6 +456,7 @@ const NumberCap = styled.span`
   font-size: 23px;
   text-align: center;
   font-weight: bold;
+  user-select: none;
   color: ${({ numberColor }) => JKStyle[numberColor].main};
 `;
 
@@ -456,23 +478,71 @@ class JKGirl extends React.PureComponent {
     };
   }
 
+  componentDidMount() {
+    const { directionY, directionX } = this.props;
+    this.setState(state => ({
+      ...state,
+      directionY,
+      directionX,
+      delay: -Math.random() * 3
+    }));
+  }
+
+  onMouseDown = () => {
+    this.setState(state => ({
+      ...state,
+      picked: true
+    }));
+  };
+
+  unPicked = () => {
+    this.setState(state => ({
+      ...state,
+      picked: false
+    }));
+  };
+
+  onMouseOver = event => {
+    if (!this.state.isJump) {
+      this.setState(state => ({
+        ...state,
+        isJump: true
+      }));
+      setTimeout(()=>{
+        this.setState(state => ({
+          ...state,
+          isJump: false
+        }))
+      },1000)
+    }
+  };
+
+  onClick = selectedId => () => {
+    this.props.selectStudent({selectedId})
+  }
+
   render() {
     const {
       directionX,
       directionY,
-      isMoving,
       isJump,
+      isMoving,
       faceRight = true,
       cloth,
       eye,
       hair,
       number,
-      numberColor
+      numberColor,
+      studentId,
+      selectedId
     } = this.props;
+
+    const { delay } = this.state;
 
     const eyeColor = eye;
     const hairColor = hair;
     const clothColor = cloth;
+    const picked = studentId === selectedId;
 
     return (
       <PersonBox
@@ -481,13 +551,16 @@ class JKGirl extends React.PureComponent {
         faceRight={faceRight}
         isJump={isJump}
         zIndex={directionY}
+        picked={picked}
+        onClick={this.onClick(studentId)}
       >
+        <Shadow picked={picked} />
         <PersonFoot>
           <Leg isMoving={isMoving} />
           <Leg left isMoving={isMoving} />
           <Skirt clothColor={clothColor} />
         </PersonFoot>
-        <PersonBody>
+        <PersonBody delay={delay}>
           <Hand isMoving={isMoving}>
             <TakeItem />
           </Hand>
@@ -496,16 +569,16 @@ class JKGirl extends React.PureComponent {
           </Chest>
           <Hand left isMoving={isMoving} />
         </PersonBody>
-        <PersonHead>
+        <PersonHead delay={delay}>
           <PersonHair hairColor={hairColor}>
-            <HairTail hairColor={hairColor} />
-            <HairTailEnd hairColor={hairColor} />
+            <HairTail delay={delay} hairColor={hairColor} />
+            <HairTailEnd delay={delay} hairColor={hairColor} />
             <HairEnd hairColor={hairColor} />
             <HairBack hairColor={hairColor} />
             <HairFrond hairColor={hairColor} left={51} rotate={-73} />
             <HairFrond hairColor={hairColor} left={31} rotate={-53} />
             <HairFrond hairColor={hairColor} left={11} rotate={-23} />
-            <HairUp hairColor={hairColor} />
+            <HairUp delay={delay} hairColor={hairColor} />
           </PersonHair>
           <PersonFace>
             <PersonEye eyeColor={eyeColor} left />

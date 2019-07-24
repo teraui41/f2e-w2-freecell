@@ -1,7 +1,7 @@
 export const LINE_SPACING_X = 160;
 export const LINE_SPACING_Y = 50;
 export const PADDING_TOP = 250;
-export const PADDING_LEFT = 30;
+export const PADDING_LEFT = 40;
 
 export const CARD_NUMBERS = [
   "A",
