@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import JKGirl from "../components/JKGirl";
+import WelcomeDialog from '../containers/WelcomeDialogContainer';
 import { FOUR_SUITS } from "../constants/common";
 
 const BasicPlayground = styled.div`
@@ -72,6 +73,7 @@ class PlaygroundScreen extends React.PureComponent {
             {...FOUR_SUITS[suit]}
           />
         ))}
+        <WelcomeDialog />
       </BasicPlayground>
     );
   }
