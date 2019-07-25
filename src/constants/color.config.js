@@ -64,3 +64,11 @@ export const JKStyle = {
     deep: "#4d535d"
   }
 };
+
+export const Colors = {
+  white: "#fff",
+  gray: '#eee',
+  deepGray: '#c1c1c1',
+  dark: '#808080',
+  deepDark: '#4d535d',
+};

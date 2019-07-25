@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import JKGirl from "../components/JKGirl";
-import WelcomeDialog from '../containers/WelcomeDialogContainer';
-import { FOUR_SUITS } from "../constants/common";
+import HintDialog from "../containers/HintDialogContainer";
+import WelcomeDialog from "../containers/WelcomeDialogContainer";
+import { FOUR_SUITS, SUITS } from "../constants/common";
 
 const BasicPlayground = styled.div`
   position: relative;
-  width: 100%;
+  width: 1280px;
   height: 100%;
   margin: auto;
   background-color: #b9c784;
@@ -29,7 +30,7 @@ const LineBasic = styled.div`
   margin-top: 300px;
   border-radius: 10px;
   border: 2px solid rgba(0, 0, 0, 0.14);
-  transition: background-color .5s ease;
+  transition: background-color 0.5s ease;
   :hover {
     background-color: #e2eabf;
   }
@@ -38,43 +39,53 @@ const LineBasic = styled.div`
 const Lines = ({ onMouseDown }) => {
   let lines = [];
   for (let i = 0; i < 8; i++) {
-    lines.push(<LineBasic onMouseDown={onMouseDown(i)}/>);
+    lines.push(<LineBasic onMouseDown={onMouseDown(i)} />);
   }
 
   return lines;
 };
 
 class PlaygroundScreen extends React.PureComponent {
-
-  componentDidMount() {
-    
-  }
+  componentDidMount() {}
 
   onMouseDown = lineNo => event => {
-
     const { clientX, clientY } = event;
     const directionY = clientY - 127;
     const directionX = clientX - 50;
 
-    this.props.pointPosition({directionX, directionY});
-  }
+    this.props.pointPosition({ directionX, directionY });
+  };
 
   render() {
     const { students, selectedId, selectStudent } = this.props;
     return (
-      <BasicPlayground>
-        <Lines  onMouseDown={this.onMouseDown}/>
-        {students.map(({ suit, ...student }, index) => (
-          <JKGirl
-            key={index}
-            selectedId={selectedId}
-            selectStudent={selectStudent}
-            {...student}
-            {...FOUR_SUITS[suit]}
-          />
-        ))}
+      <React.Fragment>
+        <BasicPlayground>
+          <Lines onMouseDown={this.onMouseDown} />
+          {students.map(({ suit, ...student }, index) => (
+            <JKGirl
+              key={`jk${suit}${index}`}
+              selectedId={selectedId}
+              selectStudent={selectStudent}
+              {...student}
+              {...FOUR_SUITS[suit]}
+            />
+          ))}
+        </BasicPlayground>
+        <HintDialog>
+          {SUITS.map((suit, index) => (
+            <JKGirl
+              key={`demo${suit}${index}`}
+              directionX={70 + 120 * index}
+              directionY={100}
+              selectedId={`demo${suit}${index}`}
+              {...FOUR_SUITS[suit]}
+              number={"A"}
+            />
+          ))}
+        </HintDialog>
         <WelcomeDialog />
-      </BasicPlayground>
+      </React.Fragment>
     );
   }
 }
