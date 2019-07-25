@@ -36,6 +36,8 @@ const LineBasic = styled.div`
   }
 `;
 
+const SelectedJK = styled.div``
+
 const Lines = ({ onMouseDown }) => {
   let lines = [];
   for (let i = 0; i < 8; i++) {
@@ -49,17 +51,19 @@ class PlaygroundScreen extends React.PureComponent {
   componentDidMount() {}
 
   onMouseDown = lineNo => event => {
+    const { selectedId } = this.props;
     const { clientX, clientY } = event;
     const directionY = clientY - 127;
     const directionX = clientX - 50;
 
-    this.props.pointPosition({ directionX, directionY });
+    this.props.pointPosition({ selectedId, directionX, directionY });
   };
 
   render() {
     const { students, selectedId, selectStudent } = this.props;
     return (
       <React.Fragment>
+        <SelectedJK />
         <BasicPlayground>
           <Lines onMouseDown={this.onMouseDown} />
           {students.map(({ suit, ...student }, index) => (

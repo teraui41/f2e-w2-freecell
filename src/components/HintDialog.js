@@ -1,6 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import { JKStyle } from "../constants/color.config";
+import { randomSort } from "../utils/random.utils";
+import {
+  LINE_SPACING_Y,
+  LINE_SPACING_X,
+  PADDING_TOP,
+  PADDING_LEFT
+} from "../constants/common";
 
 const BasicHintDialog = styled.div`
   position: absolute;
@@ -13,8 +20,8 @@ const BasicHintDialog = styled.div`
   background-color: #fff;
   border: 10px solid #eee;
   border-radius: 10px;
-  margin-top: ${({open}) => open ? -100: -1000}px;
-  opacity: ${({open}) => open ? 1: 0};
+  margin-top: ${({ open }) => (open ? -100 : -1000)}px;
+  opacity: ${({ open }) => (open ? 1 : 0)};
 `;
 
 const HintTitle = styled.h4`
@@ -63,24 +70,50 @@ const StartButton = styled.div`
 `;
 
 class HintDialog extends React.PureComponent {
-
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.state = {
       open: true
-    }
+    };
   }
 
-  onClick = () => {
+  delay = seconds => {
+    return new Promise(resolve => {
+      setTimeout(function() {
+        resolve();
+      }, seconds);
+    });
+  };
 
-    
-
-    this.setState(state=>({
+  onClick = async () => {
+    this.setState(state => ({
       ...state,
       open: false
-    }))
-  }
+    }));
+
+    const { students } = this.props;
+    const cards = students.toJS();
+    const randomCards = randomSort(cards);
+    const lineNum = randomSort([7, 7, 6, 6, 7, 7, 6, 6]);
+    let line = 0;
+    let col = 0;
+
+    for (let i = 0; i < randomCards.length; i++) {
+      const maxCardInLine = lineNum[line];
+
+      await this.delay(200);
+
+      this.props.pointPosition({
+        studentId: `${randomCards[i].suit}${randomCards[i].number}`,
+        directionY: LINE_SPACING_Y * col + PADDING_TOP,
+        directionX: LINE_SPACING_X * line + PADDING_LEFT
+      });
+
+      line = maxCardInLine - 1 === col ? line + 1 : line;
+      col = maxCardInLine - 1 === col ? 0 : col + 1;
+    }
+  };
 
   render() {
     const { open } = this.state;

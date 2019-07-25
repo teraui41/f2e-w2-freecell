@@ -1,6 +1,7 @@
 const actionTypes = [
   'POINT_POSITION',
-  'SELECT_STUDENT'
+  'SELECT_STUDENT',
+  'REARRANGE_STUDENT'
 ]
 
 const combine = array => 
