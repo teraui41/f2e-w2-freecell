@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Stage from '../components/Stage';
 import JKGirl from "../components/JKGirl";
 import HintDialog from "../containers/HintDialogContainer";
 import WelcomeDialog from "../containers/WelcomeDialogContainer";
@@ -63,6 +64,7 @@ class PlaygroundScreen extends React.PureComponent {
     const { students, selectedId, selectStudent } = this.props;
     return (
       <React.Fragment>
+        <Stage />
         <SelectedJK />
         <BasicPlayground>
           <Lines onMouseDown={this.onMouseDown} />
