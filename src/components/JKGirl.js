@@ -157,7 +157,6 @@ const HairTail = styled.span`
   transform: rotate(16deg);
   margin-top: -13px;
   border-bottom: 5px solid ${({ hairColor }) => JKStyle[hairColor].deep};
-  animation: ${HairTailMove} 1s ${({ delay }) => delay}s ease infinite;
   transform-origin: top;
 `;
 
@@ -178,7 +177,6 @@ const HairTailEnd = styled.span`
   -ms-transform: rotate(8deg);
   transform: rotate(16deg);
   margin-top: -7px;
-  animation: ${HairTailMove} 1s ${({ delay }) => delay}s ease infinite;
   transform-origin: top;
 `;
 

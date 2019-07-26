@@ -290,7 +290,7 @@ const Skirt = styled.span`
   width: 50px;
   margin-top: 34px;
   height: 20px;
-  background-image: linear-gradient(to left,#3b3b3b 70%,#2f2f2f 71%);
+  background-image: linear-gradient(to left, #3b3b3b 70%, #2f2f2f 71%);
   background-size: 9px;
   border-top: 5px solid #3b3b3b;
   border-bottom-left-radius: 3px;
@@ -298,23 +298,23 @@ const Skirt = styled.span`
 `;
 
 const Neck = styled.span`
-position: absolute;
-width: 10px;
-height: 4px;
-background-color: #2f2e2f;
-border-bottom-right-radius: 10px;
-border-bottom-left-radius: 10px;
-left: 17px;
-border-top: 5px solid ${JKStyle.skin.deep};
-::after {
   position: absolute;
-  content: "";
   width: 10px;
-  height: 5px;
-  margin-top: -10px;
-  background-color: ${JKStyle.skin.deep};
-  margin-top: -7px;
-}
+  height: 4px;
+  background-color: #2f2e2f;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  left: 17px;
+  border-top: 5px solid ${JKStyle.skin.deep};
+  ::after {
+    position: absolute;
+    content: "";
+    width: 10px;
+    height: 5px;
+    margin-top: -10px;
+    background-color: ${JKStyle.skin.deep};
+    margin-top: -7px;
+  }
 `;
 
 const HandLeftMove = keyframes`
@@ -404,8 +404,8 @@ const PersonFoot = styled.span`
 `;
 
 const Message = styled.span`
-font-family: 'Microsoft JhengHei';
-display: block;
+  font-family: "Microsoft JhengHei";
+  display: block;
   position: absolute;
   padding: 10px;
   font-size: 20px;
@@ -423,7 +423,7 @@ display: block;
     width: 0px;
     height: 0px;
     border: 15px solid transparent;
-    border-right: 15px solid #eee;
+    border-top: 15px solid #eee;
   }
 `;
 
@@ -437,7 +437,7 @@ background-color: ${JKStyle.pink.main}
 border-left: 3px solid ${JKStyle.pink.main};
 border-right: 2px solid ${JKStyle.pink.main};
 transform: rotate(-30deg);
-`
+`;
 
 const TakeItem = styled.span`
   position: absolute;
@@ -506,29 +506,29 @@ class Teacher extends React.PureComponent {
         <PersonFoot>
           <Leg isMoving={isMoving} />
           <Leg left isMoving={isMoving} />
-          <Skirt clothColor={'brown'} />
+          <Skirt clothColor={"brown"} />
         </PersonFoot>
         <PersonBody delay={delay}>
           <Hand isMoving={isMoving}>
             <TakeItem />
           </Hand>
           <Chest>
-            <Neck clothColor={'eyeBlack'} />
+            <Neck clothColor={"eyeBlack"} />
           </Chest>
           <Hand left isMoving={isMoving} />
         </PersonBody>
         <PersonHead delay={delay}>
-          <PersonHair hairColor={'eyeBlack'}>
-            <HairEnd hairColor={'eyeBlack'} />
-            <HairBack hairColor={'eyeBlack'} />
-            <HairFrond hairColor={'eyeBlack'} left={51} rotate={-73} />
-            <HairFrond hairColor={'eyeBlack'} left={31} rotate={-53} />
-            <HairFrond hairColor={'eyeBlack'} left={11} rotate={-23} />
+          <PersonHair hairColor={"eyeBlack"}>
+            <HairEnd hairColor={"eyeBlack"} />
+            <HairBack hairColor={"eyeBlack"} />
+            <HairFrond hairColor={"eyeBlack"} left={51} rotate={-73} />
+            <HairFrond hairColor={"eyeBlack"} left={31} rotate={-53} />
+            <HairFrond hairColor={"eyeBlack"} left={11} rotate={-23} />
           </PersonHair>
           <PersonFace>
             <FaceLine />
-            <PersonEye eyeColor={'grayScale'} left />
-            <PersonEye eyeColor={'grayScale'} right />
+            <PersonEye eyeColor={"grayScale"} left />
+            <PersonEye eyeColor={"grayScale"} right />
             <PersonMouth />
           </PersonFace>
         </PersonHead>
