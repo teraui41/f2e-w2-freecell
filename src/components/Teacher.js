@@ -1,4 +1,5 @@
 import React from "react";
+import isEmpty from "lodash/isEmpty";
 import styled from "styled-components";
 import { keyframes } from "styled-components";
 import { JKStyle } from "../constants/color.config";
@@ -403,7 +404,10 @@ const PersonFoot = styled.span`
   left: 24px;
 `;
 
-const Message = styled.span`
+const BasicMessage = ({ className, message }) =>
+  !isEmpty(message) ? <span className={className}>{message}</span> : null;
+
+const Message = styled(BasicMessage)`
   font-family: "Microsoft JhengHei";
   display: block;
   position: absolute;
@@ -412,14 +416,14 @@ const Message = styled.span`
   background-color: #fff;
   border: 4px solid #eee;
   border-radius: 15px;
-  left: 90px;
-  top: -20px;
+  left: 10px;
+  top: -70px;
   width: 160px;
   ::before {
     position: absolute;
     content: "";
-    left: -30px;
-    top: 10px;
+    left: 30px;
+    top: 50px;
     width: 0px;
     height: 0px;
     border: 15px solid transparent;
@@ -489,6 +493,7 @@ class Teacher extends React.PureComponent {
       hair,
       number,
       numberColor,
+      message,
       studentId,
       selectedId
     } = this.props;
@@ -532,7 +537,7 @@ class Teacher extends React.PureComponent {
             <PersonMouth />
           </PersonFace>
         </PersonHead>
-        <Message>準備好了嗎孩子們</Message>
+        <Message message={message} />
       </PersonBox>
     );
   }

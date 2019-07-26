@@ -8,7 +8,7 @@ const BasicStage = styled.div`
   height: 40px;
   z-index: 444;
   margin: auto;
-  top: 172px;
+  top: 190px;
   background-color: #fff;
   left: 0;
   right: 0;

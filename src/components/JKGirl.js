@@ -1,4 +1,5 @@
 import React from "react";
+import isEmpty from 'lodash/isEmpty';
 import styled from "styled-components";
 import { keyframes } from "styled-components";
 import { JKStyle } from "../constants/color.config";
@@ -428,8 +429,35 @@ const PersonFoot = styled.span`
   left: 24px;
 `;
 
-const Message = styled.span`
+
+
+const BasicMessage = ({ className, message: { type, message }}) =>
+  !isEmpty(message) || type === "broadcast" ? (
+    <span className={className}>{message}</span>
+  ) : null;
+
+const Message = styled(BasicMessage)`
+  font-family: "Microsoft JhengHei";
+  display: block;
   position: absolute;
+  padding: 10px;
+  font-size: 20px;
+  background-color: #fff;
+  border: 4px solid #eee;
+  border-radius: 15px;
+  left: 10px;
+  top: -70px;
+  width: 160px;
+  ::before {
+    position: absolute;
+    content: "";
+    left: 30px;
+    top: 50px;
+    width: 0px;
+    height: 0px;
+    border: 15px solid transparent;
+    border-top: 15px solid #eee;
+  }
 `;
 
 const TakeItem = styled.span`
@@ -532,7 +560,8 @@ class JKGirl extends React.PureComponent {
       number,
       numberColor,
       studentId,
-      selectedId
+      selectedId,
+      message = {}
     } = this.props;
 
     const { delay } = this.state;
@@ -585,7 +614,7 @@ class JKGirl extends React.PureComponent {
           </PersonFace>
           <NumberCap numberColor={numberColor}>{number}</NumberCap>
         </PersonHead>
-        <Message />
+        <Message message={message}/>
       </PersonBox>
     );
   }

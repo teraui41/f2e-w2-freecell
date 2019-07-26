@@ -61,10 +61,10 @@ class PlaygroundScreen extends React.PureComponent {
   };
 
   render() {
-    const { students, selectedId, selectStudent } = this.props;
+    const { students, selectedId, selectStudent, teacherMessage, studentMessage } = this.props;
     return (
       <React.Fragment>
-        <Stage />
+        <Stage message={teacherMessage}/>
         <SelectedJK />
         <BasicPlayground>
           <Lines onMouseDown={this.onMouseDown} />
@@ -73,6 +73,7 @@ class PlaygroundScreen extends React.PureComponent {
               key={`jk${suit}${index}`}
               selectedId={selectedId}
               selectStudent={selectStudent}
+              message={studentMessage}
               {...student}
               {...FOUR_SUITS[suit]}
             />

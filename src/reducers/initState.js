@@ -35,6 +35,8 @@ const getStudents = () => {
 }
 
 export const playgroundState = fromJS({
+  teacherMessage: '',
+  studentMessage: {},
   line0: [],
   line1: [],
   line2: [],
