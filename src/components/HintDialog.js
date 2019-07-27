@@ -92,6 +92,24 @@ class HintDialog extends React.PureComponent {
       open: false
     }));
 
+    this.props.updateTeacherMessage("準備好了嗎孩子們?");
+
+    await this.delay(1200);
+
+    this.props.updateStudentMessage({
+      type: "boardcast",
+      message: "是的校長!"
+    });
+    this.props.updateTeacherMessage("");
+
+    await this.delay(1200);
+
+    this.props.updateTeacherMessage("喔~~~~~~");
+    this.props.updateStudentMessage({ type: "boardcast", message: "" });
+
+    await this.delay(3000);
+    this.props.updateTeacherMessage("是誰住在深海的大鳳梨裡?");
+    this.props.updateStudentMessage({ type: "boardcast", message: "" });
     const { students } = this.props;
     const cards = students.toJS();
     const randomCards = randomSort(cards);
@@ -113,6 +131,60 @@ class HintDialog extends React.PureComponent {
       line = maxCardInLine - 1 === col ? line + 1 : line;
       col = maxCardInLine - 1 === col ? 0 : col + 1;
     }
+
+    await this.delay(2000);
+
+    this.props.updateTeacherMessage("...");
+    await this.delay(1000);
+    this.props.updateTeacherMessage("不是說好要一起唱的嗎?");
+
+    await this.delay(2000);
+
+    this.props.updateStudentMessage({ type: "spadeA", message: "年紀這麼大了不丟臉嗎?" });
+    await this.delay(2000);
+
+    this.props.updateStudentMessage({ type: "heart6", message: "邊跑邊唱超累好嗎" });
+    await this.delay(2000);
+
+    this.props.updateStudentMessage({ type: "diamondA", message: "要唱一起唱阿" });
+    this.props.updateTeacherMessage("");
+
+    await this.delay(2000);
+
+    this.props.updateStudentMessage({ type: "diamondA", message: "我才不要自己唱" });
+    
+    await this.delay(2000);
+    this.props.updateStudentMessage({ type: "diamondA", message: "" });
+
+    
+
+    this.props.updateTeacherMessage("到底是誰這樣教你們跟長輩說話的?");
+    
+    await this.delay(2000);
+    this.props.updateStudentMessage({ type: "club5", message: "你啊" });
+    await this.delay(2000);
+    this.props.updateStudentMessage({ type: "diamond5", message: "就欠嘴咩(小聲" });
+    await this.delay(2000);
+    this.props.updateStudentMessage({ type: "diamond5", message: "" });
+
+    this.props.updateTeacherMessage("...");
+    
+    await this.delay(2000);
+
+    this.props.updateTeacherMessage("這群我無法溝通");
+    
+    await this.delay(2000);
+
+    this.props.updateTeacherMessage("老師! 接下來就交給你了");
+    await this.delay(2000);
+
+    this.props.updateTeacherMessage("把他們趕回教室反省");
+    await this.delay(2000);
+    this.props.updateStudentMessage({ type: "club5", message: "老師~~快拉很熱欸" });
+    await this.delay(2000);
+    this.props.updateStudentMessage({ type: "club5", message: "" });
+
+    this.props.updateTeacherMessage("");
   };
 
   render() {

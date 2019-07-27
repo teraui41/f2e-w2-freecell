@@ -62,9 +62,10 @@ class PlaygroundScreen extends React.PureComponent {
 
   render() {
     const { students, selectedId, selectStudent, teacherMessage, studentMessage } = this.props;
+    console.log("TCL: PlaygroundScreen -> render -> studentMessage", studentMessage)
     return (
       <React.Fragment>
-        <Stage message={teacherMessage}/>
+        <Stage key={`state${teacherMessage}`} message={teacherMessage}/>
         <SelectedJK />
         <BasicPlayground>
           <Lines onMouseDown={this.onMouseDown} />

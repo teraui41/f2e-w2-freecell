@@ -4,16 +4,6 @@ import styled from "styled-components";
 import { keyframes } from "styled-components";
 import { JKStyle } from "../constants/color.config";
 
-const Jump = keyframes`
-  0% {
-    transform: translate(0px, 0px) scale(0.8);
-  }
-
-  100% {
-    transform: translate(0px,-100px) scale(0.8);
-  }
-`;
-
 const Shadow = styled.div`
   width: 34px;
   height: 0px;
@@ -104,90 +94,6 @@ const HairBack = styled.span`
   border-bottom-left-radius: 100px;
   margin-top: 30px;
   margin-left: -5px;
-`;
-
-const HairTailMove = keyframes`
-  0% {
-    transform: rotate(10deg);
-  }
-
-  50% {
-    transform: rotate(30deg);
-  }
-
-  100% {
-    transform: rotate(10deg);
-  }
-`;
-
-const HairTail = styled.span`
-  position: absolute;
-  background-image: ${({ hairColor }) =>
-    `linear-gradient(to left top, ${JKStyle[hairColor].main}, ${
-      JKStyle[hairColor].deep
-    })`};
-  width: 26px;
-  height: 97px;
-  border-top-left-radius: 42px;
-  border-top-right-radius: 16px;
-  border-bottom-left-radius: 53px;
-  border-bottom-right-radius: 5px;
-  margin-left: -4px;
-  -webkit-transform: rotate(13deg);
-  -ms-transform: rotate(13deg);
-  transform: rotate(16deg);
-  margin-top: -13px;
-  border-bottom: 5px solid ${({ hairColor }) => JKStyle[hairColor].deep};
-  animation: ${HairTailMove} 1s ${({ delay }) => delay}s ease infinite;
-  transform-origin: top;
-`;
-
-const HairTailEnd = styled.span`
-  position: absolute;
-  background-image: ${({ hairColor }) =>
-    `linear-gradient(to left top, ${JKStyle[hairColor].deep}, ${
-      JKStyle[hairColor].main
-    })`};
-  width: 19px;
-  height: 73px;
-  border-top-left-radius: 100px;
-  border-bottom-left-radius: 100px;
-  margin-left: 0px;
-  -webkit-transform: rotate(13deg);
-  -ms-transform: rotate(13deg);
-  -webkit-transform: rotate(8deg);
-  -ms-transform: rotate(8deg);
-  transform: rotate(16deg);
-  margin-top: -7px;
-  animation: ${HairTailMove} 1s ${({ delay }) => delay}s ease infinite;
-  transform-origin: top;
-`;
-
-const HairUpMove = keyframes`
-  0% {
-    transform: rotate(0deg);
-  }
-
-  50% {
-    transform: rotate(20deg);
-  }
-
-  100% {
-    transform: rotate(0deg);
-  }
-`;
-
-const HairUp = styled.span`
-  position: absolute;
-  width: 22px;
-  height: 27px;
-  border: 0px solid ${({ hairColor }) => JKStyle[hairColor].main};
-  border-radius: 100%;
-  border-right-width: 9px;
-  margin-top: -28px;
-  margin-left: 32px;
-  animation: ${HairUpMove} 1s ${({ delay }) => delay}s ease infinite;
-  transform-origin: bottom;
 `;
 
 const HairEnd = styled.span`
@@ -419,28 +325,18 @@ const Message = styled(BasicMessage)`
   left: 10px;
   top: -70px;
   width: 160px;
-  ::before {
-    position: absolute;
-    content: "";
-    left: 30px;
-    top: 50px;
-    width: 0px;
-    height: 0px;
-    border: 15px solid transparent;
-    border-top: 15px solid #eee;
-  }
 `;
 
 const FaceLine = styled.span`
-width: 10px;
-height: 2px;
-margin-left: 14px;
-margin-top: 40px;
-position: absolute;
-background-color: ${JKStyle.pink.main}
-border-left: 3px solid ${JKStyle.pink.main};
-border-right: 2px solid ${JKStyle.pink.main};
-transform: rotate(-30deg);
+  width: 10px;
+  height: 2px;
+  margin-left: 14px;
+  margin-top: 40px;
+  position: absolute;
+  background-color: ${JKStyle.pink.main}
+  border-left: 3px solid ${JKStyle.pink.main};
+  border-right: 2px solid ${JKStyle.pink.main};
+  transform: rotate(-30deg);
 `;
 
 const TakeItem = styled.span`
@@ -482,27 +378,10 @@ class Teacher extends React.PureComponent {
   }
 
   render() {
-    const {
-      directionX,
-      directionY,
-      isJump,
-      isMoving,
-      faceRight = true,
-      cloth,
-      eye,
-      hair,
-      number,
-      numberColor,
-      message,
-      studentId,
-      selectedId
-    } = this.props;
+    const { isMoving, message, studentId, selectedId } = this.props;
 
     const { delay } = this.state;
 
-    const eyeColor = eye;
-    const hairColor = hair;
-    const clothColor = cloth;
     const picked = studentId === selectedId;
 
     return (

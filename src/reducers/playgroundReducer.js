@@ -1,4 +1,4 @@
-import { fromJS } from 'immutable';
+import { fromJS } from "immutable";
 import types from "../constants/actionTypes";
 import { playgroundState } from "./initState";
 
@@ -10,6 +10,7 @@ export default function reducers(
     case types.UPDATE_TEACHER_MESSAGE:
       return playground.merge(fromJS({ teacherMessage: payload }));
     case types.UPDATE_STUDENT_MESSAGE:
+      console.log("TCL: payload", payload);
       return playground.merge(fromJS({ studentMessage: payload }));
     default:
       return playground;

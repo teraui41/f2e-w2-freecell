@@ -1,5 +1,7 @@
 import React from "react";
-import isEmpty from 'lodash/isEmpty';
+import propTypes from "prop-types";
+import isEmpty from "lodash/isEmpty";
+import { Map } from "immutable";
 import styled from "styled-components";
 import { keyframes } from "styled-components";
 import { JKStyle } from "../constants/color.config";
@@ -124,20 +126,6 @@ const HairBack = styled.span`
   border-bottom-left-radius: 100px;
   margin-top: 30px;
   margin-left: -5px;
-`;
-
-const HairTailMove = keyframes`
-  0% {
-    transform: rotate(10deg);
-  }
-
-  50% {
-    transform: rotate(30deg);
-  }
-
-  100% {
-    transform: rotate(10deg);
-  }
 `;
 
 const HairTail = styled.span`
@@ -429,12 +417,16 @@ const PersonFoot = styled.span`
   left: 24px;
 `;
 
+const BasicMessage = ({ className, studentId, message }) => {
+  const studentMessage = message.get("message");
+  const type = message.get("type");
 
+  if (isEmpty(studentMessage)) return null;
 
-const BasicMessage = ({ className, message: { type, message }}) =>
-  !isEmpty(message) || type === "broadcast" ? (
-    <span className={className}>{message}</span>
+  return type === studentId || type === "boardcast" ? (
+    <span className={className}>{studentMessage}</span>
   ) : null;
+};
 
 const Message = styled(BasicMessage)`
   font-family: "Microsoft JhengHei";
@@ -448,16 +440,6 @@ const Message = styled(BasicMessage)`
   left: 10px;
   top: -70px;
   width: 160px;
-  ::before {
-    position: absolute;
-    content: "";
-    left: 30px;
-    top: 50px;
-    width: 0px;
-    height: 0px;
-    border: 15px solid transparent;
-    border-top: 15px solid #eee;
-  }
 `;
 
 const TakeItem = styled.span`
@@ -489,13 +471,20 @@ const NumberCap = styled.span`
 const defaultState = {
   name: "",
   gender: 0,
-  message: "",
   positionX: 0,
   positionY: 0,
   directionLeft: false
 };
 
 class JKGirl extends React.PureComponent {
+  static propTypes = {
+    message: propTypes.instanceOf(Map)
+  };
+
+  static defaultProps = {
+    message: Map()
+  };
+
   constructor(props) {
     super(props);
 
@@ -534,18 +523,18 @@ class JKGirl extends React.PureComponent {
         ...state,
         isJump: true
       }));
-      setTimeout(()=>{
+      setTimeout(() => {
         this.setState(state => ({
           ...state,
           isJump: false
-        }))
-      },1000)
+        }));
+      }, 1000);
     }
   };
 
   onClick = selectedId => () => {
-    this.props.selectStudent({selectedId})
-  }
+    this.props.selectStudent({ selectedId });
+  };
 
   render() {
     const {
@@ -561,7 +550,7 @@ class JKGirl extends React.PureComponent {
       numberColor,
       studentId,
       selectedId,
-      message = {}
+      message
     } = this.props;
 
     const { delay } = this.state;
@@ -614,7 +603,7 @@ class JKGirl extends React.PureComponent {
           </PersonFace>
           <NumberCap numberColor={numberColor}>{number}</NumberCap>
         </PersonHead>
-        <Message message={message}/>
+        <Message studentId={studentId} message={message} />
       </PersonBox>
     );
   }

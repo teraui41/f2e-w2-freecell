@@ -31,7 +31,7 @@ const BasicWelcomeDialog = styled.div`
 `;
 
 const BlackBoard = styled.div`
-opacity: ${({open}) => open ? 1: 0};
+  opacity: ${({open}) => open ? 1: 0};
   border: 20px solid #543333;
   border-radius: 10px;
   background-color: #5a7557;

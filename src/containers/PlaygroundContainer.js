@@ -4,10 +4,7 @@ import {
   pointPositionAction,
   selectStudentAction
 } from "../actions/studentActions";
-import {
-  updateTeacherMessageAction,
-  updateStudentMessageAction
-} from "../actions/playgroundActions";
+
 
 const mapStateToProps = ({ JKs, playground }) => ({
   students: JKs.get("students").toJS(),
@@ -22,12 +19,6 @@ const mapDispatchToProps = dispatch => ({
   },
   selectStudent: payload => {
     dispatch(selectStudentAction(payload));
-  },
-  updateTeacherMessage: payload => {
-    dispatch(updateTeacherMessageAction(payload));
-  },
-  updateStudentMessage: payload => {
-    dispatch(updateStudentMessageAction(payload));
   }
 });
 

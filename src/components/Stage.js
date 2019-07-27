@@ -58,7 +58,7 @@ const Flag = styled.div`
 
 class Stage extends React.PureComponent {
   render() {
-    const { teacherMessage: message } = this.props;
+    const { message } = this.props;
 
     return (
       <BasicStage>
