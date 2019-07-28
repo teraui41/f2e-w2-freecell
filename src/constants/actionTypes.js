@@ -3,7 +3,8 @@ const actionTypes = [
   'SELECT_STUDENT',
   'REARRANGE_STUDENT',
   'UPDATE_TEACHER_MESSAGE',
-  'UPDATE_STUDENT_MESSAGE'
+  'UPDATE_STUDENT_MESSAGE',
+  'PICK_STUDENT'
 ]
 
 const combine = array => 

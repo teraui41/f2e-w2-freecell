@@ -9,3 +9,8 @@ export const updateStudentMessageAction = payload => ({
   type: types.UPDATE_STUDENT_MESSAGE,
   payload
 })
+
+export const pickStudentAction = payload => ({
+  type: types.PICK_STUDENT,
+  payload
+})

@@ -504,10 +504,7 @@ class JKGirl extends React.PureComponent {
   }
 
   onMouseDown = () => {
-    this.setState(state => ({
-      ...state,
-      picked: true
-    }));
+    // this.props.pickStudent();
   };
 
   unPicked = () => {

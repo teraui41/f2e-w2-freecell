@@ -61,8 +61,8 @@ class PlaygroundScreen extends React.PureComponent {
   };
 
   render() {
-    const { students, selectedId, selectStudent, teacherMessage, studentMessage } = this.props;
-    console.log("TCL: PlaygroundScreen -> render -> studentMessage", studentMessage)
+    const { students, selectedId, selectStudent, teacherMessage, studentMessage, pickStudent } = this.props;
+   
     return (
       <React.Fragment>
         <Stage key={`state${teacherMessage}`} message={teacherMessage}/>
@@ -74,6 +74,7 @@ class PlaygroundScreen extends React.PureComponent {
               key={`jk${suit}${index}`}
               selectedId={selectedId}
               selectStudent={selectStudent}
+              pickStudent={pickStudent}
               message={studentMessage}
               {...student}
               {...FOUR_SUITS[suit]}
