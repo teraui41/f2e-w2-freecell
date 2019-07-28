@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/f2e-w2-freecell/static/css/main.2cce8147.chunk.css",
+    "main.js": "/f2e-w2-freecell/static/js/main.2b409567.chunk.js",
+    "main.js.map": "/f2e-w2-freecell/static/js/main.2b409567.chunk.js.map",
+    "runtime~main.js": "/f2e-w2-freecell/static/js/runtime~main.2e5c3c8b.js",
+    "runtime~main.js.map": "/f2e-w2-freecell/static/js/runtime~main.2e5c3c8b.js.map",
+    "static/js/2.4e019ef6.chunk.js": "/f2e-w2-freecell/static/js/2.4e019ef6.chunk.js",
+    "static/js/2.4e019ef6.chunk.js.map": "/f2e-w2-freecell/static/js/2.4e019ef6.chunk.js.map",
+    "index.html": "/f2e-w2-freecell/index.html",
+    "precache-manifest.40e510b3170d39ea7f3ef49c3012b263.js": "/f2e-w2-freecell/precache-manifest.40e510b3170d39ea7f3ef49c3012b263.js",
+    "service-worker.js": "/f2e-w2-freecell/service-worker.js",
+    "static/css/main.2cce8147.chunk.css.map": "/f2e-w2-freecell/static/css/main.2cce8147.chunk.css.map"
+  }
+}
